@@ -12,8 +12,13 @@ import org.apache.logging.log4j.Logger;
 public class ComPortWrapper {
     private static final Logger logger = LogManager.getLogger(ComPortWrapper.class);
 
+    private static final Integer DATA_BITS = 8;
+    private static final Integer STOP_BITS = 1;
+    private static final Integer PARITY = 0;
+
     private SerialPort comPort;
     private String portName;
+    private Integer baudRate;
     private boolean isOpen;
 
     private ComPortWrapper() {
@@ -31,6 +36,15 @@ public class ComPortWrapper {
         }
     }
 
+    public ComPortWrapper(String portName, Integer baudRate) {
+        this(portName);
+        try {
+            setBaudRate(this.baudRate);
+        } catch(ComPortException e) {
+            logger.error("Failed to create ", this);
+        }
+    }
+
     public boolean connect() throws ComPortException {
         try {
             comPort.openPort();
@@ -44,11 +58,11 @@ public class ComPortWrapper {
     }
 
     public String getPortName() {
-        return portName;
+        return comPort.getPortName();
     }
 
     public boolean isOpen() {
-        return isOpen;
+        return comPort.isOpened();
     }
 
     public SerialPort getComPort() {
@@ -65,10 +79,29 @@ public class ComPortWrapper {
 
     public void setPortName(String portName) {
         this.portName = portName;
+        // There is no way to assign a port name,
+        // so create a new instance that is assigned
+        // to this name.
+        try {
+            comPort.closePort();
+        } catch (SerialPortException e) {
+            logger.error("Error closing port on name change.");
+        }
+        comPort = new SerialPort(portName);
     }
 
     @Override
     public String toString() {
         return "COM Port: " + portName + ", Is Open: " + isOpen;
+    }
+
+    public void setBaudRate(Integer baudRate) throws ComPortException {
+        this.baudRate = baudRate;
+        try {
+            comPort.setParams(baudRate, DATA_BITS, STOP_BITS, PARITY);
+        } catch (SerialPortException e) {
+            logger.error("Could not change port parameters! [Baud Rate]", e);
+            throw new ComPortException("Failed to change COM parameters");
+        }
     }
 }

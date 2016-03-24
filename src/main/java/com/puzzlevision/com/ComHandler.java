@@ -30,10 +30,11 @@ public class ComHandler {
         this.availablePorts = availablePorts;
     }
 
-    public boolean connectToPort(String port, String baud) {
+    public boolean connectToPort(String port, Integer baud) {
         ComPortWrapper comPort = availablePorts.get(port);
         try {
             comPort.connect();
+            comPort.setBaudRate(baud);
         } catch (ComPortException e) {
             logger.error("COM Port Exception on Connect!", e);
             return false;

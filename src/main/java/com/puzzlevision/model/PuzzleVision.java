@@ -66,12 +66,13 @@ public class PuzzleVision {
         if(action.equalsIgnoreCase(ComCommandsType.CONNECT.toString())) {
             boolean didConnect = false;
             String port = systemProperties.getProperty("puzzlevision.com.port");
-            String baud = systemProperties.getProperty("puzzlevision.baud.rate");
+            Integer baud = Integer.valueOf(systemProperties.getProperty("puzzlevision.baud.rate"));
             logger.info("Connection request received! Trying to connect with {} and {}", port, baud);
 
             if(comHandler.isComPortAvailable(port)) {
-                logger.info("Attempting to connect to port!");
+                logger.info("Attempting to connect to port {} with baud rate of {}", port, baud);
                 didConnect = comHandler.connectToPort(port, baud);
+                logger.info("State of com ports:\n" + comHandler.getAvailablePorts().toString());
             }
 
             return didConnect;
