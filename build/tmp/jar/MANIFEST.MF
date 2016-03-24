@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Title: PuzzleVision
+Implementation-Version: 0.0.1.a
+Main-Class: com.puzzlevision.main.PuzzleVisionRunner
+Class-Path: log4j-api-2.5.jar log4j-core-2.5.jar forms_rt-7.0.3.jar js
+ sc-2.8.0.jar asm-commons-3.0.jar forms-1.1-preview.jar jdom-1.0.jar a
+ sm-tree-3.0.jar asm-3.0.jar
+

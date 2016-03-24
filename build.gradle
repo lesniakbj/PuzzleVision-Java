@@ -1,0 +1,50 @@
+group 'com.puzzlevision'
+version '0.0.1.a'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+mainClassName = 'com.puzzlevision.main.PuzzleVisionRunner'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // For unit testing - JUnit
+    // testCompile(group: 'junit', name: 'junit', version: '4.11')
+
+    // For logging - Log4J
+    compile(group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.5')
+    compile(group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.5')
+
+    // For GUI Layout / Items - Forms RT
+    compile(group: 'com.intellij', name: 'forms_rt', version: '7.0.3')
+
+    // For COMs - Java Simple Serial Connector
+    compile(group: 'org.scream3r', name: 'jssc', version:'2.8.0')
+
+}
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    baseName = project.name
+    manifest {
+        attributes  'Implementation-Title': 'PuzzleVision',
+                    'Implementation-Version': version,
+                    'Main-Class': 'com.puzzlevision.main.PuzzleVisionRunner',
+                    'Class-Path': configurations.compile.collect{ it.getName() }.join(' ')
+    }
+}
+
+run {
+    standardInput = System.in
+    args '-g'
+}
+
+idea {
+
+}

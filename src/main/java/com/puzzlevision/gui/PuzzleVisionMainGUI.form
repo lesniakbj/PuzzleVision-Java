@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.puzzlevision.gui.PuzzleVisionMainGUI">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="2" vgap="2">
+    <margin top="2" left="2" bottom="2" right="2"/>
+    <constraints>
+      <xy x="98" y="63" width="1468" height="455"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="4a016" binding="tabPanel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="1400" height="800"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="SansSerif" size="22" style="1"/>
+        </properties>
+        <border type="bevel-raised"/>
+        <children>
+          <grid id="6ee55" binding="comPanel" layout-manager="GridLayoutManager" row-count="3" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="COM View"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="a1b78" binding="deviceComPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="1" row-span="2" col-span="10" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="400" height="200"/>
+                    <preferred-size width="400" height="200"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="SansSerif" size="22" style="1"/>
+                </properties>
+                <border type="etched" title="Device COM Area">
+                  <font name="SansSerif" size="22" style="0"/>
+                </border>
+                <children>
+                  <scrollpane id="1a448" binding="deviceTextScrollPane">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <horizontalScrollBarPolicy value="31"/>
+                      <verticalScrollBarPolicy value="22"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="c0b00" class="javax.swing.JTextArea" binding="deviceTextArea">
+                        <constraints/>
+                        <properties>
+                          <background color="-16777216"/>
+                          <caretColor color="-1"/>
+                          <columns value="0"/>
+                          <font name="SansSerif" size="20" style="0"/>
+                          <foreground color="-1"/>
+                          <lineWrap value="true"/>
+                          <selectedTextColor color="-6423297"/>
+                          <selectionColor color="-8077354"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+              <vspacer id="470ab">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <preferred-size width="17" height="299"/>
+                  </grid>
+                </constraints>
+              </vspacer>
+              <grid id="551a9" binding="controlsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="9" vsize-policy="3" hsize-policy="3" anchor="10" fill="0" indent="1" use-parent-layout="false">
+                    <minimum-size width="1200" height="80"/>
+                    <maximum-size width="1200" height="80"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="c9d93" class="javax.swing.JButton" binding="connectButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="SansSerif" size="22" style="0"/>
+                      <text value="Connect"/>
+                    </properties>
+                  </component>
+                  <component id="f24e" class="javax.swing.JTextField" binding="baudTextField">
+                    <constraints>
+                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="1" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="SansSerif" size="22" style="0"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="c7687" class="javax.swing.JLabel" binding="baudLabel">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="SansSerif" size="22" style="0"/>
+                      <labelFor value="f24e"/>
+                      <text value="Baud Rate:"/>
+                    </properties>
+                  </component>
+                  <hspacer id="63808">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="2" use-parent-layout="false">
+                        <minimum-size width="50" height="40"/>
+                        <maximum-size width="50" height="40"/>
+                      </grid>
+                    </constraints>
+                  </hspacer>
+                  <component id="92b02" class="javax.swing.JTextField" binding="comPortTextField">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="1" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="SansSerif" size="22" style="0"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="d3840" class="javax.swing.JLabel" binding="comPortLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="SansSerif" size="22" style="0"/>
+                      <labelFor value="92b02"/>
+                      <text value="COM Port:"/>
+                    </properties>
+                  </component>
+                  <hspacer id="1cd9c">
+                    <constraints>
+                      <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="2" use-parent-layout="false">
+                        <minimum-size width="10" height="40"/>
+                        <maximum-size width="10" height="40"/>
+                      </grid>
+                    </constraints>
+                  </hspacer>
+                  <hspacer id="e6031">
+                    <constraints>
+                      <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="2" use-parent-layout="false">
+                        <minimum-size width="10" height="40"/>
+                        <maximum-size width="10" height="40"/>
+                      </grid>
+                    </constraints>
+                  </hspacer>
+                  <component id="c3ee" class="javax.swing.JButton" binding="portListButton">
+                    <constraints>
+                      <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="SansSerif" size="22" style="0"/>
+                      <text value="Port List"/>
+                    </properties>
+                  </component>
+                  <hspacer id="f2631">
+                    <constraints>
+                      <grid row="0" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="20" height="40"/>
+                        <maximum-size width="20" height="-1"/>
+                      </grid>
+                    </constraints>
+                  </hspacer>
+                  <component id="ffd65" class="javax.swing.JButton" binding="clearButton">
+                    <constraints>
+                      <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="SansSerif" size="22" style="0"/>
+                      <text value="Clear"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="eb58d" binding="imageDataPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Image Data"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="eb8ac" binding="rawImagePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Raw Image"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+  <inspectionSuppressions>
+    <suppress inspection="NoLabelFor" id="1a448"/>
+  </inspectionSuppressions>
+</form>
