@@ -2,18 +2,23 @@ package com.puzzlevision.model;
 
 import com.puzzlevision.com.ComCommandsType;
 import com.puzzlevision.com.ComHandler;
-import com.puzzlevision.gui.PuzzleVisionMainGUI;
 import com.puzzlevision.resource.ResourceLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 /**
  * Created by Brendan on 3/21/2016.
+ *
+ * This is the main PuzzleVision class, which is
+ * designed to coordinate the running of an analysis,
+ * and the communication of a a device that is running
+ * the physical hardware through Serial Comms. This class
+ * will have a ComHandler and ImageAnalyzer so that it can
+ * perform each of the tasks required.
  */
 public class PuzzleVision {
     private static final Logger logger = LogManager.getLogger("PuzzleVision");
@@ -66,7 +71,7 @@ public class PuzzleVision {
         if(action.equalsIgnoreCase(ComCommandsType.CONNECT.toString())) {
             boolean didConnect = false;
             String port = systemProperties.getProperty("puzzlevision.com.port");
-            Integer baud = Integer.valueOf(systemProperties.getProperty("puzzlevision.baud.rate"));
+            Integer baud = Integer.parseInt(systemProperties.getProperty("puzzlevision.baud.rate"));
             logger.info("Connection request received! Trying to connect with {} and {}", port, baud);
 
             if(comHandler.isComPortAvailable(port)) {

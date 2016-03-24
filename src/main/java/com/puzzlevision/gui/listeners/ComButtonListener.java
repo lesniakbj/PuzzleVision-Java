@@ -11,12 +11,20 @@ import java.awt.event.ActionListener;
 
 /**
  * Created by Brendan on 3/23/2016.
+ *
+ * The ComButtonListener is a more generic listenern that
+ * is attached to all of the buttons that exist on the
+ * COM panel of the GUI. Once a button is pressed, it passes
+ * the argument on to the PuzzleVision instance so that it
+ * can run the command.
  */
 public class ComButtonListener implements ActionListener {
     private static final Logger logger = LogManager.getLogger(ComButtonListener.class);
 
     private PuzzleVisionMainGUI mainGUI;
     private PuzzleVision puzzleVision;
+
+    private String action;
 
     public ComButtonListener(PuzzleVisionMainGUI mainGUI) {
         this.mainGUI = mainGUI;
@@ -32,10 +40,16 @@ public class ComButtonListener implements ActionListener {
         // the Puzzle Vision instance handle that action. If things
         // need to update on the GUI, update them after performing
         // the action, or notify of error.
-        String action = e.getActionCommand().toLowerCase();
+        action = e.getActionCommand().toLowerCase();
+
+        if(puzzleVision.getComHandler().isComPortAvailable(mainGUI.getComPortName())) {
+            logger.info("Setting the parameters for port, {}, and baud rate, {}.", mainGUI.getComPortName(), mainGUI.getBaudRate());
+            puzzleVision.getSystemProperties().setProperty("puzzlevision.com.port", mainGUI.getComPortName());
+            puzzleVision.getSystemProperties().setProperty("puzzlevision.baud.rate", mainGUI.getBaudRate().toString());
+        }
+
         if (!puzzleVision.handleAction(action)) {
             logger.error("Unable to handle action! [{}]", action);
-            return;
         }
     }
 }

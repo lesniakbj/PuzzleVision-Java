@@ -12,10 +12,13 @@ import org.apache.logging.log4j.Logger;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.util.ResourceBundle;
 
 /**
  * Created by Brendan on 3/22/2016.
+ *
+ * This is the Main GUI for the puzzle vision COM connector
+ * and image analyzer. This will have 3 different panes, all of
+ * which handle different aspects of the project.
  */
 public class PuzzleVisionMainGUI {
     private static final Logger logger = LogManager.getLogger(PuzzleVisionMainGUI.class);
@@ -65,7 +68,7 @@ public class PuzzleVisionMainGUI {
     private void show() {
         rootFrame = new JFrame("Puzzle Vision");
         rootFrame.setContentPane(this.rootPanel);
-        rootFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        rootFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         rootFrame.pack();
         rootFrame.setVisible(true);
     }
@@ -94,6 +97,10 @@ public class PuzzleVisionMainGUI {
 
     public PuzzleVision getPuzzleVision() {
         return puzzleVision;
+    }
+
+    public Integer getBaudRate() {
+        return Integer.parseInt(baudTextField.getText());
     }
 
     public JTextArea getDeviceTextArea() {
@@ -192,5 +199,9 @@ public class PuzzleVisionMainGUI {
      */
     public JComponent $$$getRootComponent$$$() {
         return rootPanel;
+    }
+
+    public String getComPortName() {
+        return comPortTextField.getText().trim();
     }
 }
