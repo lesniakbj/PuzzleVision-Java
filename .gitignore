@@ -1,0 +1,9 @@
+*.jar
+*.tar
+*.zip
+*.lock
+*.bin
+/build/*
+/.gradle/*
+/out/*
+/.idea/*
