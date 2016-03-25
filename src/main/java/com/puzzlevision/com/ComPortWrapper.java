@@ -8,6 +8,13 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Created by Brendan on 3/23/2016.
+ *
+ * A wrapper for the COM ports, allows
+ * me to add some functionality and meta
+ * data to the ports without having to
+ * extend the class.
+ *
+ * Favor composition over inheritance.
  */
 public class ComPortWrapper {
     private static final Logger logger = LogManager.getLogger(ComPortWrapper.class);
@@ -103,5 +110,30 @@ public class ComPortWrapper {
             logger.error("Could not change port parameters! [Baud Rate]", e);
             throw new ComPortException("Failed to change COM parameters");
         }
+    }
+
+    public void setFlowControl() throws ComPortException {
+        try {
+            comPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
+                    SerialPort.FLOWCONTROL_RTSCTS_OUT);
+        } catch (SerialPortException e) {
+            logger.error("Could not set flow control to defaults [Flow Control]", e);
+            throw new ComPortException("Failed to set Flow Control mode!");
+        }
+    }
+
+    public void initialize(String port, Integer baud) throws ComPortException {
+        connect();
+        setBaudRate(baud);
+        setFlowControl();
+        try {
+            addComEventListener();
+        } catch (SerialPortException e) {
+            logger.error("Error adding event listener to COM port {}, {}", this, e);
+        }
+    }
+
+    private void addComEventListener() throws SerialPortException {
+        comPort.addEventListener(new ComListener(this));
     }
 }

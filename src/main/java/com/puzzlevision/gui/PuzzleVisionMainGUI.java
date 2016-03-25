@@ -3,9 +3,10 @@ package com.puzzlevision.gui;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import com.puzzlevision.model.PuzzleVision;
 import com.puzzlevision.gui.listeners.ComButtonListener;
 import com.puzzlevision.gui.listeners.ComKeyListener;
+import com.puzzlevision.gui.listeners.ExitListener;
+import com.puzzlevision.model.PuzzleVision;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -69,6 +70,7 @@ public class PuzzleVisionMainGUI {
         rootFrame = new JFrame("Puzzle Vision");
         rootFrame.setContentPane(this.rootPanel);
         rootFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        rootFrame.addWindowListener(new ExitListener());
         rootFrame.pack();
         rootFrame.setVisible(true);
     }
@@ -105,6 +107,10 @@ public class PuzzleVisionMainGUI {
 
     public JTextArea getDeviceTextArea() {
         return deviceTextArea;
+    }
+
+    public String getComPortName() {
+        return comPortTextField.getText().trim();
     }
 
     /**
@@ -199,9 +205,5 @@ public class PuzzleVisionMainGUI {
      */
     public JComponent $$$getRootComponent$$$() {
         return rootPanel;
-    }
-
-    public String getComPortName() {
-        return comPortTextField.getText().trim();
     }
 }

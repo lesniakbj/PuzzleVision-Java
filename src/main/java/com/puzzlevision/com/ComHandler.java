@@ -5,13 +5,15 @@ import jssc.SerialPortList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Brendan on 3/23/2016.
+ *
+ * The Com handler handles all the tasks of
+ * gathering, iterating, and returning Com Ports.
+ * It acts as a container and Manager.
  */
 public class ComHandler {
     private static final Logger logger = LogManager.getLogger(ComHandler.class);
@@ -33,10 +35,9 @@ public class ComHandler {
     public boolean connectToPort(String port, Integer baud) {
         ComPortWrapper comPort = availablePorts.get(port);
         try {
-            comPort.connect();
-            comPort.setBaudRate(baud);
+            comPort.initialize(port, baud);
         } catch (ComPortException e) {
-            logger.error("COM Port Exception on Connect!", e);
+            logger.error("COM Port Exception on Initialization!", e);
             return false;
         }
 
@@ -49,10 +50,10 @@ public class ComHandler {
 
     private Map<String, ComPortWrapper> detectComPorts() {
         String[] ports = SerialPortList.getPortNames();
-        Map<String, ComPortWrapper> portList = new HashMap<String, ComPortWrapper>();
+        Map<String, ComPortWrapper> portList = new HashMap<>();
 
         for(String port : ports) {
-            portList.put(port.toString(), new ComPortWrapper(port.toString()));
+            portList.put(port, new ComPortWrapper(port));
         }
 
         logger.info("Detected the following Serial Ports: \n{}", portList);
