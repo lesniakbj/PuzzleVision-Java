@@ -1,5 +1,6 @@
 package com.puzzlevision.com;
 
+import com.puzzlevision.model.PuzzleVision;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
@@ -15,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 public class ComListener implements SerialPortEventListener {
     private static final Logger logger = LogManager.getLogger(ComListener.class);
 
-    private static final int MESSAGE_SIZE = 16;
+    private static final int MESSAGE_SIZE = Integer.parseInt(PuzzleVision.getSystemProperty("puzzlevision.com.length"));
 
     private ComPortWrapper comPort;
 

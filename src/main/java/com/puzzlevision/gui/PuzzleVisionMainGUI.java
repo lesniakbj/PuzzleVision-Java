@@ -76,8 +76,8 @@ public class PuzzleVisionMainGUI {
     }
 
     private void loadTextDefaults() {
-        String comPort = puzzleVision.getSystemProperties().getProperty("puzzlevision.com.port");
-        String baudRate = puzzleVision.getSystemProperties().getProperty("puzzlevision.baud.rate");
+        String comPort = PuzzleVision.getSystemProperty("puzzlevision.com.port");
+        String baudRate = PuzzleVision.getSystemProperty("puzzlevision.com.baud");
 
         logger.info("Setting GUI default values to {} and {}", comPort, baudRate);
         comPortTextField.setText(comPort);

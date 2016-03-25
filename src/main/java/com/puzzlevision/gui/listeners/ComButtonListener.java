@@ -1,8 +1,8 @@
 package com.puzzlevision.gui.listeners;
 
 import com.puzzlevision.com.ComHandler;
-import com.puzzlevision.model.PuzzleVision;
 import com.puzzlevision.gui.PuzzleVisionMainGUI;
+import com.puzzlevision.model.PuzzleVision;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,8 +44,8 @@ public class ComButtonListener implements ActionListener {
 
         if(puzzleVision.getComHandler().isComPortAvailable(mainGUI.getComPortName())) {
             logger.info("Setting the parameters for port, {}, and baud rate, {}.", mainGUI.getComPortName(), mainGUI.getBaudRate());
-            puzzleVision.getSystemProperties().setProperty("puzzlevision.com.port", mainGUI.getComPortName());
-            puzzleVision.getSystemProperties().setProperty("puzzlevision.baud.rate", mainGUI.getBaudRate().toString());
+            PuzzleVision.setSystemProperty("puzzlevision.com.port", mainGUI.getComPortName());
+            PuzzleVision.setSystemProperty("puzzlevision.com.baud", mainGUI.getBaudRate().toString());
         }
 
         if (!puzzleVision.handleAction(action)) {

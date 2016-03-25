@@ -23,8 +23,10 @@ import java.util.Properties;
 public class PuzzleVision {
     private static final Logger logger = LogManager.getLogger("PuzzleVision");
 
-    private Properties systemProperties;
-    private Properties messageProperties;
+    // Only one set of properties for the entire puzzle vision.
+    // There should only ever be one puzzle vision instance.
+    private static Properties systemProperties;
+    private static Properties messageProperties;
 
     private ComHandler comHandler;
 
@@ -33,28 +35,52 @@ public class PuzzleVision {
         messageProperties = new Properties();
     }
 
-    public void setMessageProperties(Properties props) {
-        this.messageProperties = props;
+    public static String getSystemProperty(String prop) {
+        return getProperty(prop, systemProperties);
     }
 
-    public void setSystemProperties(Properties props) {
-        this.systemProperties = props;
+    public static String getMessageProperty(String prop) {
+        return getProperty(prop, systemProperties);
     }
 
-    public void setComHandler(ComHandler comHandler) {
-        this.comHandler = comHandler;
+    private static String getProperty(String prop, Properties props) {
+        return props.getProperty(prop);
+    }
+
+    public static void setSystemProperty(String s, String comPortName) {
+        setProperty(s, comPortName, systemProperties);
+    }
+
+    public static void setMessageProperty(String s, String comPortName) {
+        setProperty(s, comPortName, systemProperties);
+    }
+
+    private static void setProperty(String prop, String val, Properties props) {
+        props.setProperty(prop, val);
     }
 
     public Properties getMessageProperties() {
         return messageProperties;
     }
 
+    public void setMessageProperties(Properties props) {
+        messageProperties = props;
+    }
+
     public Properties getSystemProperties() {
         return systemProperties;
     }
 
+    public void setSystemProperties(Properties props) {
+        systemProperties = props;
+    }
+
     public ComHandler getComHandler() {
         return comHandler;
+    }
+
+    public void setComHandler(ComHandler comHandler) {
+        this.comHandler = comHandler;
     }
 
     public boolean handleAction(String action) {
@@ -71,7 +97,7 @@ public class PuzzleVision {
         if(action.equalsIgnoreCase(ComCommandsType.CONNECT.toString())) {
             boolean didConnect = false;
             String port = systemProperties.getProperty("puzzlevision.com.port");
-            Integer baud = Integer.parseInt(systemProperties.getProperty("puzzlevision.baud.rate"));
+            Integer baud = Integer.parseInt(systemProperties.getProperty("puzzlevision.com.baud"));
             logger.info("Connection request received! Trying to connect with {} and {}", port, baud);
 
             if(comHandler.isComPortAvailable(port)) {
